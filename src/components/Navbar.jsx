@@ -1,23 +1,86 @@
 import { Link, NavLink } from "react-router-dom";
 import { IoPersonOutline } from "react-icons/io5";
+import { IoPersonAddOutline } from "react-icons/io5";
+
 
 
 const Navbar = () => {
 
-    const user = 'rafi'
+    const user = 0
     const logout = () => {
-
+        
     }
 
     const links =
         <>
             <NavLink to='/' className={({ isActive }) => isActive ? "text-purple-700 lg:border-b-purple-500 lg:border-b-2" : "hover:text-purple-400"}><a>Home</a></NavLink>
-            <NavLink to='/statistics' className={({ isActive }) => isActive ? "text-purple-700 lg:border-b-purple-500 lg:border-b-2" : "hover:text-purple-400"}><a>Statistics</a></NavLink>
-            <NavLink to='/update_profile' className={({ isActive }) => isActive ? "text-purple-700 lg:border-b-purple-500 lg:border-b-2" : "hover:text-purple-400"}><a>Update Profile</a></NavLink>
+            <NavLink to='/all_art_and_craft_items' className={({ isActive }) => isActive ? "text-purple-700 lg:border-b-purple-500 lg:border-b-2" : "hover:text-purple-400"}><a>All Art & Craft Items</a></NavLink>
+            <NavLink to='/add_cart_item' className={({ isActive }) => isActive ? "text-purple-700 lg:border-b-purple-500 lg:border-b-2" : "hover:text-purple-400"}><a>Add Cart Item</a></NavLink>
+            <NavLink to='/my_art_and_craft_list' className={({ isActive }) => isActive ? "text-purple-700 lg:border-b-purple-500 lg:border-b-2" : "hover:text-purple-400"}><a>My Art & Craft List</a></NavLink>
         </>
     return (
         <>
-            Navbar
+            <div className="navbar bg-base-100 max-w-7xl mx-auto lg:py-6 w-11/12">
+                <div className="navbar-start" data-aos="fade-down">
+                    <div className="dropdown">
+                        <div tabIndex={0} role="button" className="btn btn-ghost lg:hidden">
+                            <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5" fill="none" viewBox="0 0 24 24"
+                                stroke="currentColor">
+                                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2"
+                                    d="M4 6h16M4 12h8m-8 6h16" />
+                            </svg>
+                        </div>
+                        <ul tabIndex={0}
+                            className="menu menu-sm dropdown-content mt-3 z-[100] shadow bg-base-100 rounded-box w-52 gap-4 p-4 *:font-semibold border border-purple-200">
+                            {links}
+                        </ul>
+                    </div>
+                    <div className="absolute ml-14 lg:ml-0 overflow-hidden flex justify-center items-center">
+                    {/* bg-gradient-to-r from-orange-700 via-blue-500 to-green-400 text-transparent bg-clip-text animate-gradient bg-300%  */}
+                    <video className="absolute object-cover w-full" autoPlay loop muted> <source src="https://videos.pexels.com/video-files/10914360/10914360-hd_1920_1080_24fps.mp4" /></video>
+                    <a className="text-lg lg:text-3xl md:text-xl font-madimi bg-white mix-blend-screen">Canvas Whisper</a>
+                    </div>
+                </div>
+                <div className="navbar-center hidden lg:flex">
+                    <ul className="menu menu-horizontal px-1 *:lg:text-lg *:opacity-70 gap-6 *:font-semibold">
+                        {links}
+                    </ul>
+                </div>
+                <div className="navbar-end">
+                    {
+                        user ?
+                            <div className="dropdown dropdown-end">
+                                <div tabIndex={0} role="button" className="btn btn-ghost btn-circle avatar tooltip tooltip-bottom flex items-center" data-tip={user?.displayName || "No Username"}>
+                                    <div className="w-10 rounded-full ring ring-primary ring-offset-2" data-aos="zoom-in-left">
+                                        <img alt="Tailwind CSS Navbar component" src={user?.photoURL || "https://i.ibb.co/TWmn0tk/monochrome-icon-people-icon-design-user-icon-in-flat-style-vector.jpg"} />
+                                    </div>
+                                </div>
+                                <ul tabIndex={0} className="mt-3 z-[100] p-2 shadow menu menu-sm dropdown-content bg-base-100 rounded-box w-52">
+                                    <Link to='/update_profile' className="pl-3 py-1.5 rounded-lg btn-ghost" ><a>Update Profile</a></Link>
+                                    <li onClick={logout}><a>Logout</a></li>
+                                </ul>
+                            </div>
+                            :
+                            <>
+                            
+                            <Link
+                                to='/login'
+                                className="btn shadow-none bg-white text-purple-700 hover:bg-purple-100 btn-primary btn-xs sm:btn-sm border-none md:btn-md lg:btn-md rounded-2xl"
+                                data-aos="zoom-in-left"
+                            >
+                                <IoPersonOutline />Login
+                            </Link>
+                            <Link
+                                to='/register'
+                                className="btn shadow-none bg-white text-orange-600 hover:bg-orange-100 btn-primary btn-xs sm:btn-sm border-none md:btn-md lg:btn-md hidden md:flex rounded-2xl"
+                                data-aos="zoom-in-left"
+                            >
+                                <IoPersonAddOutline />Register
+                            </Link>
+                            </>
+                    }
+                </div>
+            </div>
         </>
     )
 }
