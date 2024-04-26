@@ -1,15 +1,14 @@
 import { Link, NavLink } from "react-router-dom";
 import { IoPersonOutline } from "react-icons/io5";
 import { IoPersonAddOutline } from "react-icons/io5";
+import { useContext } from "react";
+import { AuthContext } from "../FirebaseProvider/FirebaseProvider";
 
 
 
 const Navbar = () => {
 
-    const user = 0
-    const logout = () => {
-        
-    }
+    const {user, logout} = useContext(AuthContext)
 
     const links =
         <>
@@ -56,7 +55,7 @@ const Navbar = () => {
                                     </div>
                                 </div>
                                 <ul tabIndex={0} className="mt-3 z-[100] p-2 shadow menu menu-sm dropdown-content bg-base-100 rounded-box w-52">
-                                    <Link to='/update_profile' className="pl-3 py-1.5 rounded-lg btn-ghost" ><a>Update Profile</a></Link>
+                                    <Link to='/my_art_and_craft_list' className="pl-3 py-1.5 rounded-lg btn-ghost" ><a>My Art & Craft List</a></Link>
                                     <li onClick={logout}><a>Logout</a></li>
                                 </ul>
                             </div>

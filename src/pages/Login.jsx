@@ -1,6 +1,6 @@
 import { Link, useLocation, useNavigate } from "react-router-dom";
 import { useContext, useState } from "react";
-// import { AuthContext } from "../FirebaseProvider/FirebaseProvider";
+import { AuthContext } from "../FirebaseProvider/FirebaseProvider";
 import { useForm } from "react-hook-form"
 // import { Helmet } from "react-helmet-async";
 import { IoEye } from "react-icons/io5";
@@ -27,14 +27,14 @@ const Login = () => {
     const from = location?.state || '/'
 
     const handleSocialLogin = (socialProvider) => {
-        // socialProvider().then(result => {
-        //     if (result.user) {
-        //         navigate(from)
-        //     }
-        // })
+        socialProvider().then(result => {
+            if (result.user) {
+                navigate(from)
+            }
+        })
     }
 
-    // const { signInUser, signInWithGoogle, signInWithGithub } = useContext(AuthContext)
+    const { signInUser, signInWithGoogle, signInWithGithub } = useContext(AuthContext)
 
     // const [errorMessage, setErrorMessage] = useState('')
     // const [errorExpression, setErrorExpression] = useState(true)
@@ -49,18 +49,18 @@ const Login = () => {
 
     const onSubmit = (data) => {
         
-        // const { name, password } = data
-        // signInUser(name, password)
-        //     .then((result) => {
-        //         if (result.user) {
-        //             navigate(from)
-        //         }
-        //     })
-        //     .catch ((error) => {
-        //         if (error) {
-        //             setMsg(error.message)
-        //         }
-        //     })
+        const { name, password } = data
+        signInUser(name, password)
+            .then((result) => {
+                if (result.user) {
+                    navigate(from)
+                }
+            })
+            .catch ((error) => {
+                if (error) {
+                    setMsg(error.message)
+                }
+            })
     }
 
     const notify = () => {
@@ -115,7 +115,7 @@ const Login = () => {
                             <div className="divider divider-primary">Or</div>
                             <div className="form-control">
                                 <button
-                                    // onClick={() => handleSocialLogin(signInWithGoogle)}
+                                    onClick={() => handleSocialLogin(signInWithGoogle)}
                                     // onClick={() => signInWithGoogle()}
                                     type="button"
                                     className="py-2 mb-4 px-4 flex justify-center items-centers shadow-red-200 hover:shadow-red-300 shadow-xl bg-red-600 hover:bg-red-700 focus:ring-red-500 focus:ring-offset-red-200 text-white w-full transition ease-in duration-200 text-center text-base font-semibold focus:outline-none focus:ring-2 focus:ring-offset-2  rounded-lg ">
@@ -128,7 +128,7 @@ const Login = () => {
                                     Continue with Google
                                 </button>
                                 <button
-                                    // onClick={() => handleSocialLogin(signInWithGithub)}
+                                    onClick={() => handleSocialLogin(signInWithGithub)}
                                     // onClick={() => signInWithGithub()}
                                     type="button"
                                     className="py-2 px-4 flex justify-center items-center shadow-xl shadow-gray-200 hover:shadow-gray-300 bg-gray-600 hover:bg-gray-700 focus:ring-gray-500 focus:ring-offset-gray-200 text-white w-full transition ease-in duration-200 text-center text-base font-semibold  focus:outline-none focus:ring-2 focus:ring-offset-2  rounded-lg ">
