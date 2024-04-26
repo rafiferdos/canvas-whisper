@@ -17,7 +17,7 @@ export default {
         '300%': '300%',
       },
       fontFamily: {
-        'madimi': "'Madimi One', 'sans-serif'",
+        'pacifico': "'Pacifico', cursive",
       },
       animation: {
         gradient: 'animatedgradient 5s ease infinite alternate',

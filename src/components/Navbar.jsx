@@ -38,7 +38,7 @@ const Navbar = () => {
                     <div className="absolute ml-14 lg:ml-0 overflow-hidden flex justify-center items-center">
                     {/* bg-gradient-to-r from-orange-700 via-blue-500 to-green-400 text-transparent bg-clip-text animate-gradient bg-300%  */}
                     <video className="absolute object-cover w-full" autoPlay loop muted> <source src="https://videos.pexels.com/video-files/10914360/10914360-hd_1920_1080_24fps.mp4" /></video>
-                    <a className="text-lg lg:text-3xl md:text-xl font-madimi bg-white mix-blend-screen">Canvas Whisper</a>
+                    <a className="text-lg lg:text-3xl md:text-xl font-pacifico bg-white mix-blend-screen">Canvas Whisper</a>
                     </div>
                 </div>
                 <div className="navbar-center hidden lg:flex">
