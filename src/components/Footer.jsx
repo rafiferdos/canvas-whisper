@@ -87,7 +87,7 @@ const Footer = () => {
                         </div>
                     </div>
                     <hr className="my-6 border-gray-300"/>
-                    <div className="flex  items-center md:justify-between justify-center">
+                    <div className="flex items-center md:justify-between justify-center">
                         <div className="w-full md:w-8/12 px-4 mx-auto text-center">
                             <div className="text-sm font-semibold py-1">
                                 Copyright © <span id="get-current-year">2024 | </span><a
