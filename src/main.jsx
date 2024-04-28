@@ -8,10 +8,10 @@ import FirebaseProvider from './FirebaseProvider/FirebaseProvider'
 
 ReactDOM.createRoot(document.getElementById('root')).render(
   <React.StrictMode>
-     <FirebaseProvider>
-            {/* <HelmetProvider> */}
-                <RouterProvider router={router} />
-            {/* </HelmetProvider> */}
-        </FirebaseProvider>
+      <FirebaseProvider>
+        {/* <HelmetProvider> */}
+        <RouterProvider router={router} />
+        {/* </HelmetProvider> */}
+      </FirebaseProvider>
   </React.StrictMode>,
 )

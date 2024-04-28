@@ -1,16 +1,16 @@
 import { Link, NavLink } from "react-router-dom";
 import { IoPersonOutline } from "react-icons/io5";
 import { IoPersonAddOutline } from "react-icons/io5";
-import { useContext, useEffect, useState } from "react";
+import { useContext, useEffect } from "react";
 import { AuthContext } from "../FirebaseProvider/FirebaseProvider";
-
 
 
 const Navbar = () => {
 
     const { user, logout } = useContext(AuthContext)
 
-    const [theme, setTheme] = useState(localStorage.getItem('theme') ? localStorage.getItem('theme') : 'light')
+    // const [theme, setTheme] = useState(localStorage.getItem('theme') ? localStorage.getItem('theme') : 'light')
+    const {theme, setTheme} = useContext(AuthContext)
     const toggleTheme = (e) => {
         if (e.target.checked)
             setTheme('dark')

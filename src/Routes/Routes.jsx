@@ -7,6 +7,7 @@ import AddCartItem from "../pages/AddCartItem"
 import MyArtAndCraftList from "../pages/MyArtAndCraftList"
 import Login from "../pages/Login"
 import Register from "../pages/Register"
+import PrivateRoutes from "../components/PrivateRoutes"
 
 const router = createBrowserRouter([
     {
@@ -28,16 +29,19 @@ const router = createBrowserRouter([
             },
             {
                 path: '/my_art_and_craft_list',
-                element: <MyArtAndCraftList />
+                element:
+                    <PrivateRoutes>
+                        <MyArtAndCraftList />
+                    </PrivateRoutes>
             },
             {
                 path: '/login',
                 element: <Login />
-            },   
+            },
             {
                 path: '/register',
                 element: <Register />
-            }       
+            }
 
         ]
     }

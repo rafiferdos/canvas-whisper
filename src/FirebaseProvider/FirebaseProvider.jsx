@@ -1,14 +1,15 @@
-import {createContext} from "react";
-import {createUserWithEmailAndPassword, onAuthStateChanged, signInWithEmailAndPassword, GoogleAuthProvider, signInWithPopup, GithubAuthProvider, signOut} from "firebase/auth";
+import { createContext } from "react";
+import { createUserWithEmailAndPassword, onAuthStateChanged, signInWithEmailAndPassword, GoogleAuthProvider, signInWithPopup, GithubAuthProvider, signOut } from "firebase/auth";
 import auth from "../firebase/firebase.config.js";
-import {useState, useEffect} from "react";
+import { useState, useEffect } from "react";
 
 export const AuthContext = createContext(null)
 
 
 // eslint-disable-next-line react/prop-types
-const FirebaseProvider = ({children}) => {
-    const [loading , setLoading] = useState(true)
+const FirebaseProvider = ({ children }) => {
+    const [loading, setLoading] = useState(true)
+    const [theme, setTheme] = useState(localStorage.getItem('theme') ? localStorage.getItem('theme') : 'light')
 
     const googleProvider = new GoogleAuthProvider()
     const githubProvider = new GithubAuthProvider()
@@ -18,20 +19,20 @@ const FirebaseProvider = ({children}) => {
     const createUser = (email, password) => {
         setLoading(true)
         return createUserWithEmailAndPassword(auth, email, password)
-        .then((result) => {
-            setUser(result.user)
-            console.log(result.user)
-        })
+            .then((result) => {
+                setUser(result.user)
+                console.log(result.user)
+            })
     }
 
-    
+
 
     const signInUser = (email, password) => {
         setLoading(true)
         return signInWithEmailAndPassword(auth, email, password)
-        .then((result) => {
+            .then((result) => {
                 setUser(result.user)
-        })
+            })
     }
 
     // const handleSocialLogin = (socialProvider) => {
@@ -59,17 +60,17 @@ const FirebaseProvider = ({children}) => {
 
     useEffect(() => {
         const unsubscribe = onAuthStateChanged(auth, (user) => {
-          if (user) {
-            setUser(user);
-            setLoading(false)
-        } else {
-            setUser(null);
-            setLoading(false)
-          }
+            if (user) {
+                setUser(user);
+                setLoading(false)
+            } else {
+                setUser(null);
+                setLoading(false)
+            }
         });
         // Cleanup subscription on unmount
         return () => unsubscribe();
-      }, []);
+    }, []);
 
     const allValues = {
         createUser,
@@ -78,13 +79,15 @@ const FirebaseProvider = ({children}) => {
         signInWithGithub,
         logout,
         loading,
-        user
+        user,
+        theme, 
+        setTheme
     }
 
     return (
-        <AuthContext.Provider value={allValues}>
-            {children}
-        </AuthContext.Provider>
+            <AuthContext.Provider value={allValues}>
+                {children}
+            </AuthContext.Provider>
     );
 };
 

@@ -10,12 +10,7 @@ import { toast, ToastContainer } from "react-toastify";
 
 const Login = () => {
 
-    // Swal.fire({
-    //     title: 'Error!',
-    //     text: 'Do you want to continue',
-    //     icon: 'error',
-    //     confirmButtonText: 'Cool'
-    //   })
+    const {theme} = useContext(AuthContext)
 
     const [showPassword, setShowPassword] = useState(false)
     const togglePasswordVisibility = () => {
@@ -87,7 +82,7 @@ const Login = () => {
                         <h1 className="font-bold text-2xl lg:text-6xl md:text-4xl bg-gradient-to-r from-orange-700 via-blue-500 to-purple-800 text-transparent bg-clip-text animate-gradient bg-300% font-madimi">Login now!</h1>
                         <p className="py-6 opacity-60">We can&apos;t wait for you to get logged in here and save your information to avoid unnecessary reload data loss, so why wait? Let&apos;s jump into it.</p>
                     </div>
-                    <div className="card shrink-0 w-full max-w-sm shadow-2xl bg-base-100" data-aos="fade-right" data-aos-duration="1000">
+                    <div className="card shrink-0 w-full max-w-sm shadow-2xl bg-base-200" data-aos="fade-right" data-aos-duration="1000">
                         <form className="card-body" onSubmit={handleSubmit(onSubmit)}>
                             <div className="form-control">
                                 <label className="label">
@@ -118,7 +113,7 @@ const Login = () => {
                                     onClick={() => handleSocialLogin(signInWithGoogle)}
                                     // onClick={() => signInWithGoogle()}
                                     type="button"
-                                    className="py-2 mb-4 px-4 flex justify-center items-centers shadow-red-200 hover:shadow-red-300 shadow-xl bg-red-600 hover:bg-red-700 focus:ring-red-500 focus:ring-offset-red-200 text-white w-full transition ease-in duration-200 text-center text-base font-semibold focus:outline-none focus:ring-2 focus:ring-offset-2  rounded-lg ">
+                                    className={theme === 'light' ? "py-2 mb-4 px-4 flex justify-center items-center shadow-red-300 hover:shadow-red-400 shadow-xl bg-red-600 hover:bg-red-700 focus:ring-red-500 focus:ring-offset-red-200 text-white w-full transition ease-in duration-200 text-center text-base font-semibold focus:outline-none focus:ring-2 focus:ring-offset-2 rounded-lg" : "py-2 mb-4 px-4 flex justify-center items-center shadow-red-800 hover:shadow-red-900 shadow-xl bg-red-700 hover:bg-red-800 focus:ring-red-500 focus:ring-offset-red-200 text-white w-full transition ease-in duration-200 text-center text-base font-semibold focus:outline-none focus:ring-2 focus:ring-offset-2 rounded-lg"}>
                                     <svg width="20" height="20" fill="currentColor" className="mr-2"
                                         viewBox="0 0 1792 1792" xmlns="http://www.w3.org/2000/svg">
                                         <path
@@ -131,7 +126,7 @@ const Login = () => {
                                     onClick={() => handleSocialLogin(signInWithGithub)}
                                     // onClick={() => signInWithGithub()}
                                     type="button"
-                                    className="py-2 px-4 flex justify-center items-center shadow-xl shadow-gray-200 hover:shadow-gray-300 bg-gray-600 hover:bg-gray-700 focus:ring-gray-500 focus:ring-offset-gray-200 text-white w-full transition ease-in duration-200 text-center text-base font-semibold  focus:outline-none focus:ring-2 focus:ring-offset-2  rounded-lg ">
+                                    className={theme === 'light' ? "py-2 px-4 flex justify-center items-center shadow-xl shadow-gray-300 hover:shadow-gray-400 bg-gray-600 hover:bg-gray-700 focus:ring-gray-500 focus:ring-offset-gray-200 text-white w-full transition ease-in duration-200 text-center text-base font-semibold  focus:outline-none focus:ring-2 focus:ring-offset-2  rounded-lg " : "py-2 px-4 flex justify-center items-center shadow-xl shadow-gray-700 hover:shadow-gray-600 bg-gray-600 hover:bg-gray-700 focus:ring-gray-500 focus:ring-offset-gray-800 text-white w-full transition ease-in duration-200 text-center text-base font-semibold  focus:outline-none focus:ring-2 focus:ring-offset-2  rounded-lg "}>
                                     <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor"
                                         className="mr-2" viewBox="0 0 1792 1792">
                                         <path
