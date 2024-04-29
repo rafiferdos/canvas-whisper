@@ -6,7 +6,7 @@ import { useForm } from "react-hook-form"
 import { IoEye } from "react-icons/io5";
 import { IoEyeOffSharp } from "react-icons/io5";
 import { toast, ToastContainer } from "react-toastify";
-// import Swal from 'sweetalert2'
+import 'react-toastify/dist/ReactToastify.css';
 
 const Login = () => {
 
@@ -24,16 +24,15 @@ const Login = () => {
     const handleSocialLogin = (socialProvider) => {
         socialProvider().then(result => {
             if (result.user) {
+                console.log(result.user)
                 navigate(from)
             }
         })
     }
 
+
     const { signInUser, signInWithGoogle, signInWithGithub } = useContext(AuthContext)
 
-    // const [errorMessage, setErrorMessage] = useState('')
-    // const [errorExpression, setErrorExpression] = useState(true)
-    
     const [msg, setMsg] = useState(null)
 
     const {
@@ -47,12 +46,15 @@ const Login = () => {
         const { name, password } = data
         signInUser(name, password)
             .then((result) => {
+                navigate(from)
                 if (result.user) {
-                    navigate(from)
+                    console.log(result.user)
+                    notify()
                 }
             })
             .catch ((error) => {
                 if (error) {
+                    invalidEmailNotify(error.message)
                     setMsg(error.message)
                 }
             })
@@ -68,7 +70,18 @@ const Login = () => {
             draggable: true,
             progress: undefined,
         });
-        // e.preventDefault()
+    }
+
+    const invalidEmailNotify = (invalidMsg) => {
+        return toast.error(invalidMsg, {
+            position: "top-right",
+            autoClose: 2000,
+            hideProgressBar: false,
+            closeOnClick: true,
+            pauseOnHover: true,
+            draggable: true,
+            progress: undefined,
+        });
     }
 
     return (
@@ -140,13 +153,13 @@ const Login = () => {
                                     <Link className='btn btn-ghost hover:bg-transparent underline text-purple-500'
                                         to='/register'>Register</Link>
                                 </div>
-                                <button onClick={notify} className="btn btn-primary btn-outline">Login</button>
+                                <button className="btn btn-primary btn-outline">Login</button>
                                 {/* <p>{errorMessage}</p> */}
                             </div>
                         </form>
                     </div>
                 </div>
-                <ToastContainer />
+                <ToastContainer theme={theme === 'light' ? 'light' : 'dark'} />
             </div>
         </>
     )

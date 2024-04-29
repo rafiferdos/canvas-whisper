@@ -3,7 +3,7 @@ import Root from "../layouts/Root"
 import ErrorPage from "../pages/ErrorPage"
 import Home from "../pages/Home"
 import AllArtAndCraftItems from "../pages/AllArtAndCraftItems"
-import AddCartItem from "../pages/AddCartItem"
+import AddCraftItem from "../pages/AddCraftItem"
 import MyArtAndCraftList from "../pages/MyArtAndCraftList"
 import Login from "../pages/Login"
 import Register from "../pages/Register"
@@ -24,8 +24,11 @@ const router = createBrowserRouter([
                 element: <AllArtAndCraftItems />
             },
             {
-                path: '/add_cart_item',
-                element: <AddCartItem />
+                path: '/add_craft_item',
+                element: 
+                <PrivateRoutes>
+                    <AddCraftItem />
+                </PrivateRoutes>
             },
             {
                 path: '/my_art_and_craft_list',

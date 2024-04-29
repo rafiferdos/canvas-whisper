@@ -27,12 +27,12 @@ const Navbar = () => {
         <>
             <NavLink to='/' className={({ isActive }) => isActive ? "text-purple-500 lg:border-b-purple-500 lg:border-b-2" : "hover:text-purple-300"}><a>Home</a></NavLink>
             <NavLink to='/all_art_and_craft_items' className={({ isActive }) => isActive ? "text-purple-500 lg:border-b-purple-500 lg:border-b-2" : "hover:text-purple-300"}><a>All Art & Craft Items</a></NavLink>
-            <NavLink to='/add_cart_item' className={({ isActive }) => isActive ? "text-purple-500 lg:border-b-purple-500 lg:border-b-2" : "hover:text-purple-300"}><a>Add Cart Item</a></NavLink>
+            <NavLink to='/add_craft_item' className={({ isActive }) => isActive ? "text-purple-500 lg:border-b-purple-500 lg:border-b-2" : "hover:text-purple-300"}><a>Add Craft Item</a></NavLink>
             <NavLink to='/my_art_and_craft_list' className={({ isActive }) => isActive ? "text-purple-500 lg:border-b-purple-500 lg:border-b-2" : "hover:text-purple-300"}><a>My Art & Craft List</a></NavLink>
         </>
     return (
-        <>
-            <div className="navbar bg-base-100 max-w-7xl mx-auto lg:py-6 w-11/12 sticky top-0 z-50">
+        <div className="shadow-xl sticky top-0 z-50 ">
+            <div className="navbar bg-base-100 max-w-7xl mx-auto lg:py-6 w-11/12 ">
                 <div className="navbar-start" data-aos="fade-down">
                     <div className="dropdown">
                         <div tabIndex={0} role="button" className="btn btn-ghost lg:hidden">
@@ -98,7 +98,7 @@ const Navbar = () => {
                     </label>
                 </div>
             </div>
-        </>
+        </div>
     )
 }
 

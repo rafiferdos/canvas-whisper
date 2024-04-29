@@ -1,4 +1,4 @@
-const AddCartItem = () => {
+const AddCraftItem = () => {
     return (
         <div>
             add cart item
@@ -6,4 +6,4 @@ const AddCartItem = () => {
     );
 };
 
-export default AddCartItem;
+export default AddCraftItem;

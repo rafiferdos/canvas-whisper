@@ -1,20 +1,20 @@
-import { Link, useNavigate } from "react-router-dom";
+import { Link } from "react-router-dom";
 import { useContext, useState } from "react";
-// import { AuthContext } from "../FirebaseProvider/FirebaseProvider";
+import { AuthContext } from "../FirebaseProvider/FirebaseProvider";
 import { useForm } from "react-hook-form"
 // import { Helmet } from "react-helmet-async";
 import { IoEye, IoEyeOffSharp } from "react-icons/io5";
 import { toast, ToastContainer } from "react-toastify";
+import 'react-toastify/dist/ReactToastify.css';
+
 // import { DevTool } from "@hookform/devtools";
 
 const Register = () => {
-    // const { createUser, updateUserProfile } = useContext(AuthContext)
+    const { createUser, theme } = useContext(AuthContext)
     const [showPassword, setShowPassword] = useState(false)
     const togglePasswordVisibility = () => {
         setShowPassword(!showPassword)
     }
-
-    // const { setUser } = useContext(AuthContext)
 
     const {
         register,
@@ -23,12 +23,22 @@ const Register = () => {
         formState: { errors },
     } = useForm()
 
-    const navigate = useNavigate()
-    // const location = useLocation()
-    const from = '/'
 
-    const notify = () => {
-        return toast.success("Account Created Successfully", {
+    const notify = async () => {
+        await toast.success("User Created Successfully, Reload to take effect", {
+            position: "top-right",
+            autoClose: 2000,
+            hideProgressBar: false,
+            closeOnClick: true,
+            pauseOnHover: true,
+            draggable: true,
+            progress: undefined,
+        })
+    }
+
+    const alreadyExistsNotify = (msg) => {
+        console.log(theme);
+        return toast.error(msg, {
             position: "top-right",
             autoClose: 2000,
             hideProgressBar: false,
@@ -37,25 +47,19 @@ const Register = () => {
             draggable: true,
             progress: undefined,
         });
-        // e.preventDefault()
     }
 
     const onSubmit = (data) => {
-        // const { email, password } = data
-        // createUser(email, password)
-        //     .then((result) => {
-        //         console.log(result)
-        //         if (result.user) {
-                    
-        //             updateUserProfile(result.user, data.name, data.photo_url)
-        //                 .then(() => {
-        //                     navigate(from)
-        //                     console.log('updated')
-        //                 })
-        //                 // setUser(result.user)
-
-        //         }
-        //     })
+        const { email, password, name, photo_url } = data
+        createUser(email, password, name, photo_url)
+            .then(() => {
+                notify()
+            })
+            .catch((error) => {
+                console.log(error.message);
+                const errorMsg = error.message
+                alreadyExistsNotify(errorMsg)
+            })
     }
 
     const validateText = /^(?=.*[A-Z])(?=.*[a-z])[A-Za-z]{6,}$/
@@ -74,7 +78,7 @@ const Register = () => {
                             unnecessary reload data loss please do some quick fill-up, so why wait? Let&apos;s dig
                             in.</p>
                     </div>
-                    <div className="card shrink-0 w-full max-w-sm shadow-2xl bg-base-100" data-aos="fade-right" data-aos-duration="1000">
+                    <div className="card shrink-0 w-full max-w-sm shadow-2xl bg-base-200" data-aos="fade-right" data-aos-duration="1000">
                         <form onSubmit={handleSubmit(onSubmit)} className="card-body" noValidate>
                             <div className="form-control">
                                 <label className="label">
@@ -146,13 +150,13 @@ const Register = () => {
                                 </div>
                             </div>
                             <div className="form-control mt-6">
-                                <button onClick={notify} className="btn btn-primary btn-outline">Register</button>
+                                <button className="btn btn-primary btn-outline">Register</button>
                             </div>
                         </form>
                         {/* <DevTool control={control} /> */}
                     </div>
                 </div>
-                <ToastContainer />
+                <ToastContainer theme={theme === 'light' ? 'light' : 'dark'} />
             </div>
         </>
     )
