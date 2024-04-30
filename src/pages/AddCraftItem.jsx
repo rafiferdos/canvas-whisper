@@ -39,7 +39,7 @@ const AddCraftItem = () => {
             .then(newData => {
                 console.log('Success:', newData);
                 console.log(newData.insertedId)
-                if (newData.insertedId) {
+                if (newData?.insertedId) {
                     
                     Swal.fire({
                         title: "Success!",

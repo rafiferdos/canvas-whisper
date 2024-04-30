@@ -8,6 +8,7 @@ import MyArtAndCraftList from "../pages/MyArtAndCraftList"
 import Login from "../pages/Login"
 import Register from "../pages/Register"
 import PrivateRoutes from "../components/PrivateRoutes"
+import ArtAndCraftDetails from "../components/ArtAndCraftDetails"
 
 const router = createBrowserRouter([
     {
@@ -45,6 +46,12 @@ const router = createBrowserRouter([
             {
                 path: '/register',
                 element: <Register />
+            },
+            {
+                path: '/art_and_crafts/details/:id',
+                element: <PrivateRoutes><ArtAndCraftDetails /></PrivateRoutes>,
+                // find each item by its id
+                loader: ({ params }) => fetch(`http://localhost:3000/art_and_crafts/${params._id}`),
             }
 
         ]
