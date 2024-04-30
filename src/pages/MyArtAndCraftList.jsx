@@ -7,7 +7,7 @@ const MyArtAndCraftList = () => {
     const { user } = useContext(AuthContext)
     const [item, setItem] = useState([])
 
-    const { _id } = item
+    // const { _id } = item
     console.log(item)
     console.log(user.email)
 

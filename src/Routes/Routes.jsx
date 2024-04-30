@@ -9,6 +9,7 @@ import Login from "../pages/Login"
 import Register from "../pages/Register"
 import PrivateRoutes from "../components/PrivateRoutes"
 import ArtAndCraftDetails from "../components/ArtAndCraftDetails"
+import UpdateDetails from "../components/UpdateDetails"
 
 const router = createBrowserRouter([
     {
@@ -19,6 +20,7 @@ const router = createBrowserRouter([
             {
                 path: '/',
                 element: <Home />,
+                loader: () => fetch("http://localhost:3000/art_and_crafts")
             },
             {
                 path: '/all_art_and_craft_items',
@@ -51,6 +53,11 @@ const router = createBrowserRouter([
                 path: '/art_and_crafts/details/:id',
                 element: <PrivateRoutes><ArtAndCraftDetails /></PrivateRoutes>,
                 // find each item by its id
+                loader: ({ params }) => fetch(`http://localhost:3000/art_and_crafts/${params._id}`),
+            },
+            {
+                path: '/updateItem/:id',
+                element: <UpdateDetails />,
                 loader: ({ params }) => fetch(`http://localhost:3000/art_and_crafts/${params._id}`),
             }
 

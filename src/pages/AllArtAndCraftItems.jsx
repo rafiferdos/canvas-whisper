@@ -1,6 +1,5 @@
-import { useContext, useEffect } from "react";
 import { Link, useLoaderData } from "react-router-dom";
-import { AuthContext } from "../FirebaseProvider/FirebaseProvider";
+
 
 const AllArtAndCraftItems = () => {
 
