@@ -51,14 +51,6 @@ Canvas Whisper is a web application that allows users to create, update, and del
 
 3. **Create your art and crafts**: Use the interface to create, update, or delete your art & crafts.
 
-## Contributing
-
-Contributions are welcome! Please fork the repository and submit a pull request with your changes. For major changes, please open an issue first to discuss what you would like to change.
-
-## License
-
-This project is licensed under the MIT License. See the [LICENSE](LICENSE) file for details.
-
 ## Author
 
 Rafi Ferdos
