@@ -1,12 +1,12 @@
-import { useForm } from "react-hook-form";
-import { AuthContext } from "../FirebaseProvider/FirebaseProvider";
 import { useContext } from "react";
+import { useForm } from "react-hook-form";
 import Swal from "sweetalert2";
+import { AuthContext } from "../FirebaseProvider/FirebaseProvider";
 
 const AddCraftItem = () => {
 
     const { user, theme } = useContext(AuthContext)
-    
+
     const swalBGColor = theme === 'dark' ? '#333' : '#fff';
 
     const {
@@ -28,7 +28,7 @@ const AddCraftItem = () => {
         console.log(newData);
 
         // send data to server
-        fetch('http://localhost:3000/art_and_crafts', {
+        fetch('https://canvas-whisper-server.vercel.app/art_and_crafts', {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json'
@@ -40,7 +40,7 @@ const AddCraftItem = () => {
                 console.log('Success:', newData);
                 console.log(newData.insertedId)
                 if (newData?.insertedId) {
-                    
+
                     Swal.fire({
                         title: "Success!",
                         text: "Item added successfully",

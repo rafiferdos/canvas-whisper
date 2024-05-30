@@ -9,7 +9,7 @@ const ArtAndCraftDetails = () => {
 
 
     useEffect(() => {
-        fetch(`http://localhost:3000/singleItem/${id}`)
+        fetch(`https://canvas-whisper-server.vercel.app/singleItem/${id}`)
             .then(res => res.json())
             .then(data => {
                 setEachProduct(data)
@@ -29,7 +29,7 @@ const ArtAndCraftDetails = () => {
                     <h2
                         className="card-title text-4xl flex-wrap">
                         {item_name}
-                        
+
                         <div className="badge border-none bg-purple-100 text-purple-700">{subcategory_name}</div>
 
                     </h2>
@@ -40,7 +40,7 @@ const ArtAndCraftDetails = () => {
                         <p>Owner: <span className='text-purple-600'>{name}</span></p>
                         <p>Email: <span className='text-purple-600'>{email}</span></p>
                     </div>
-                    
+
                 </div>
             </div>
         </div>

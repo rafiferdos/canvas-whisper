@@ -1,8 +1,8 @@
-import { useLoaderData, useParams } from "react-router-dom";
-import { useForm } from "react-hook-form";
-import { AuthContext } from "../FirebaseProvider/FirebaseProvider";
 import { useContext } from "react";
+import { useForm } from "react-hook-form";
+import { useLoaderData, useParams } from "react-router-dom";
 import Swal from "sweetalert2";
+import { AuthContext } from "../FirebaseProvider/FirebaseProvider";
 
 
 const UpdateDetails = () => {
@@ -33,7 +33,7 @@ const UpdateDetails = () => {
         console.log(newData);
 
         // send data to server
-        fetch(`http://localhost:3000/art_and_crafts/${id}`, {
+        fetch(`https://canvas-whisper-server.vercel.app/art_and_crafts/${id}`, {
             method: 'PUT',
             headers: {
                 'Content-Type': 'application/json'

@@ -1,7 +1,7 @@
 import { useContext, useEffect, useState } from "react";
-import { AuthContext } from "../FirebaseProvider/FirebaseProvider";
-import Swal from "sweetalert2";
 import { Link } from "react-router-dom";
+import Swal from "sweetalert2";
+import { AuthContext } from "../FirebaseProvider/FirebaseProvider";
 
 const MyArtAndCraftList = () => {
     const { user } = useContext(AuthContext)
@@ -12,7 +12,7 @@ const MyArtAndCraftList = () => {
     console.log(user.email)
 
     useEffect(() => {
-        fetch(`http://localhost:3000/myArtAndCrafts/${user?.email}`)
+        fetch(`https://canvas-whisper-server.vercel.app/myArtAndCrafts/${user?.email}`)
             .then(res => res.json())
             .then(data => {
                 // console.log(data)
@@ -20,7 +20,7 @@ const MyArtAndCraftList = () => {
             })
     }, [user])
 
-    
+
     const handleDelete = (_id) => {
         Swal.fire({
             title: "Are you sure?",
@@ -30,24 +30,24 @@ const MyArtAndCraftList = () => {
             confirmButtonColor: "#3085d6",
             cancelButtonColor: "#d33",
             confirmButtonText: "Yes, delete it!"
-          }).then((result) => {
+        }).then((result) => {
             if (result.isConfirmed) {
-              fetch(`http://localhost:3000/art_and_crafts/${_id}`, {
-                method: "DELETE"
-              
-              })
-              .then(res => res.json())
-              .then(data => {
-                if(data.deletedCount > 0) {
-                    Swal.fire({
-                        title: "Deleted!",
-                        text: "Your file has been deleted.",
-                        icon: "success"
-                      });
-                }
-              })
+                fetch(`https://canvas-whisper-server.vercel.app/art_and_crafts/${_id}`, {
+                    method: "DELETE"
+
+                })
+                    .then(res => res.json())
+                    .then(data => {
+                        if (data.deletedCount > 0) {
+                            Swal.fire({
+                                title: "Deleted!",
+                                text: "Your file has been deleted.",
+                                icon: "success"
+                            });
+                        }
+                    })
             }
-          });
+        });
     }
 
     // console.log(item.map((item) => item._id))
